@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <div className=''>
 
-      <div className='flex items-center h-[120px] w-[100vw] '>
+      <div className='flex items-center h-[120px] w-[100vw]'>
         <img src="https://nest-frontend-v6.vercel.app/assets/imgs/theme/logo.svg" alt="" />
 
         <div className='flex border border-green-500 rounded-md  w-[740px] mr-28 ml-10 p-2 '>
