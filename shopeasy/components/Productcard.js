@@ -13,7 +13,7 @@ const Productcard = ({item}) => {
       </div>
       <div className='flex flex-col space-y-1 '>
         <div className='text-gray-600' >{item.category}</div>
-        <h2 className=' font-bold' >{item.name}</h2>
+        <h2 className=' font-bold text-[#253D4E]' >{item.name}</h2>
         <div className='flex align-middle space-x-2'>
           <div className="bg-star-b bg-contain w-[73px] h-[15px]"><div style={{ width: `${star}%` }} className={`bg-star-y bg-contain h-[15px]`}></div> </div>
           <div className='text-[15px]' >({item.rating})</div>

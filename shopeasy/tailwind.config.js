@@ -58,6 +58,9 @@ module.exports = {
 			backgroundImage: {
 				'star-y': "url('/star-y.png')",
 				'star-b': "url('/star-b.png')",
+				'banner': "url('/banner.png')",
+				'banner2': "url('/banner2.png')",
+				'plane2':"url('/icon-plane.png')",
 			}
 		}
 	},

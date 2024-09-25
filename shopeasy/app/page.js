@@ -2,12 +2,12 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Showroom from "@/components/Showroom";
-import banner from "@/components/banner";
+import Banner from "@/components/banner";
 export default function Home() {
   return (
-    <div className=" w-[100vw]">
+    <div className=" w-[98vw]">
       <Showroom/>
-      <banner/>
+      <Banner/>
       
 
     </div>
