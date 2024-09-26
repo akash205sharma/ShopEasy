@@ -1,15 +1,19 @@
+"use client"
 import React from 'react'
 import Badge from './badge'
 import ItemSearch from './ItemSearch'
-
+import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react'
+import Myaccount from './myaccount'
 
 function Navbar() {
+  const { data, session } = useSession();
   return (
-    <div className='sticky top-0 bg-white'>    
+    <div className=' bg-banner bg-contain sticky top-0 bg-white z-10'>
       <div className='flex items-center h-[120px] w-[98vw]'>
         <img src="https://nest-frontend-v6.vercel.app/assets/imgs/theme/logo.svg" alt="" />
 
-        <div className='flex border border-green-500 rounded-md  w-[740px] mr-28 ml-10 p-2 '>
+        <div className='flex border border-green-500 rounded-md w-[740px] mr-28 ml-10 p-0 '>
           <ItemSearch />
           <input className='w-full outline-none ' type="text" placeholder='Search For items' />
           <img width={30} height={30} src="search.png" alt="" />
@@ -25,9 +29,7 @@ function Navbar() {
           <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
             <img src="cart.svg" alt="" /> Cart <Badge v={5} />
           </div>
-          <div className='flex w-[110px] h-[30px] align-bottom items-end ' >
-            <img src="user.svg" alt="" /> Account 
-          </div>
+          <Myaccount />
         </div>
       </div>
 
