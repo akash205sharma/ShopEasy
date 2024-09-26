@@ -2,8 +2,8 @@ import React from 'react'
 
 const Productcard = ({item}) => {
   const star=item.rating*20;
-  console.log(item);
-  console.log("ggg");
+  
+  // console.log(item);
   
   
   return (

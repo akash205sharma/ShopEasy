@@ -23,27 +23,37 @@ const ItemSearch = () => {
       <NavigationMenuList>
         {/* item1 */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Home</NavigationMenuTrigger>
+          <NavigationMenuTrigger>All Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
+                Milk And Dairies
               </NavigationMenuLink>
             </Link>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
+                Pet Food
               </NavigationMenuLink>
             </Link>
-            <div onClick={() => { console.log("mdmkdk")}}>
-
+            <div onClick={() => { console.log("Touched")}}>
               {/* <Link href="/docs" legacyBehavior passHref> */}
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
+                Clothing
               </NavigationMenuLink>
               {/* </Link> */}
 
             </div>
+            <Link href="/" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Baking material
+              </NavigationMenuLink>
+            </Link>
+            <Link href="/" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Fresh Fruits
+              </NavigationMenuLink>
+            </Link>
+
           </NavigationMenuContent>
         </NavigationMenuItem>
 

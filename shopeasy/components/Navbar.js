@@ -5,7 +5,7 @@ import ItemSearch from './ItemSearch'
 
 function Navbar() {
   return (
-    <div className=''>    
+    <div className='sticky top-0 bg-white'>    
       <div className='flex items-center h-[120px] w-[98vw]'>
         <img src="https://nest-frontend-v6.vercel.app/assets/imgs/theme/logo.svg" alt="" />
 
@@ -17,7 +17,7 @@ function Navbar() {
 
         <div className='flex justify-between'>
           <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
-            <img src="icon-compare.svg" alt="" /> Compare <Badge v={5} />
+            <img src="icon-compare.svg" alt="" /> Compare <Badge v={3} />
           </div>
           <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
             <img src="heart.svg" alt="" />Wishlist <Badge v={5} />
