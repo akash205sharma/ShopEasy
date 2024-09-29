@@ -82,22 +82,21 @@ export const authOptions = NextAuth({
             }
             if (account?.provider == "github") {
                 console.log("Connecting to the database");
-                
+
                 await connect()
                 console.log("Connected to the database");
                 // check if user exist in database
                 try {
                     const currentUser = await User.findOne({ email: user.email })
-
                     // console.log("currentUser");
 
                     if (!currentUser) {
-                        const dummypassword= "";
-                        const hashedpassword = await bcrypt.hash(dummypassword , 5);
+                        const dummypassword = "";
+                        const hashedpassword = await bcrypt.hash(dummypassword, 5);
                         const newUser = new User({
                             email: user.email,
-                            name:user.name,
-                            password:hashedpassword,
+                            name: user.name,
+                            password: hashedpassword,
                             isOAuthUser: "true",
                             profilepic: user.image,
                             // username: user.email.split("@")[0],
@@ -115,12 +114,16 @@ export const authOptions = NextAuth({
             }
 
         },
-
-        //     async session({ session, User, token }) {
-        //         // const dbUser = await User.findOne({ email: session.user.email });
-        //         // session.user.name = dbUser.name;
-        //         return session;
-        //     }
+        // now session will return all the variables of that session
+        async session({ session }) {
+            await connect();
+            const dbUser = await User.findOne({ email: session.user.email });
+            session.user.email = dbUser.email
+            session.user.name = dbUser.name
+            session.user.profilepic = dbUser.profilepic
+            session.user.username = dbUser.username
+            return session;
+        }
 
     },
 

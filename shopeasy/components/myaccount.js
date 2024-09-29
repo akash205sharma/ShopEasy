@@ -25,7 +25,7 @@ const myaccount = () => {
             <NavigationMenuTrigger>
               {session ? (<>
                 {/* <div>Name  {session.user.name}</div> */}
-                <div><img width={30} height={30} src={session.user.image } alt="" />{session.user.name}</div>
+                <div><img width={30} height={30} src={session.user.profilepic } alt="" />{session.user.name}</div>
               </>
               ) : (
                 <div className='flex w-[110px] p-[-30px] h-[30px] align-bottom items-end ' >
