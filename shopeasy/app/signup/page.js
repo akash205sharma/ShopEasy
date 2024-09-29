@@ -4,21 +4,15 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 const page = () => {
-    const router = useRouter()
     const [error, setError] = useState("")
     const { data: session } = useSession()  //important thing
+    const router = useRouter()
 
     if (session) {
         // shfit to dashboard directly
         router.push('/');
     }
-    useEffect(() => {
-      if(session?.status==="authenticated"){
-        router.push("/");
-      }
 
-    }, [session,router])
-    
 
     function isValidEmail(email) {
         var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -31,8 +25,6 @@ const page = () => {
         const password = e.target[1].value;
 
         if (!isValidEmail(email)) {
-            console.log("email",email);
-            
             setError("Not Valid Email");
             return;
         }
@@ -40,21 +32,55 @@ const page = () => {
             setError("Password is not valid");
             return;
         }
-        
-        const res=await signIn("credentials",{
-            redirect:false,
-            email,
-            password
-        })
 
-        if(res?.error){
-            setError("Invalid User Name or Password");
-            console.log(res.error);
-            
-            if(res?.url) router.push("/");
-        }
-        else{
-            setError("");
+        try {
+            const res = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
+            // console.log(res);
+
+            if (res.status === 400) {
+
+//login in sign up page
+
+                const res = await signIn("credentials", {
+                    redirect: false,
+                    email,
+                    password
+                })
+
+                if (res?.error) {
+                    setError("Invalid User Name or Password");
+                    console.log(res.error);
+
+                    if (res?.url) router.push("/");
+                }
+                else {
+                    setError("");
+                }
+
+//login in sign up page
+
+
+                // setError("This email is already registered");
+
+            }
+            else if (res.status === 200) {
+                console.log("User is Registerd successfully");
+                setError("");
+                router.push("/")
+            }
+
+        } catch (error) {
+            setError("Error , Try again ")
+            console.log(error.message);
         }
 
     }
@@ -66,8 +92,8 @@ const page = () => {
 
             <div className=' z-50 p-8 h-[70vh] w-[550px] border border-green-400 bg-[#fdfeff] flex flex-col gap-4 m-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <Link href={"/"}><button className=' absolute top-7 right-7 border border-black rounded-full w-6 text-[15px]' > <img src="/left-arrow.png" alt="" /> </button> </Link>
-                <h1 className='text-2xl font-sans font-bold'>Sign in To Your Account</h1>
-                <h6 className='text-sm'>Open Your Account in seconds. Don't have an account? <Link className='text-blue-500 hover:underline' href="/signup">Sign up.</Link></h6>
+                <h1 className='text-2xl font-sans font-bold'>Create New Account</h1>
+                <h6 className='text-sm'>Open Your Account in seconds. Already have an account? <Link className='text-blue-500 hover:underline' href="/login">Log in</Link></h6>
                 <form onSubmit={(e) => { handleSubmit(e) }} >
                     <div className='text-[15px] flex gap-3'>
                         <div className=' flex flex-col gap-1'>
@@ -83,7 +109,7 @@ const page = () => {
                     <span className='flex items-center gap-7 text-gray-500'>
                         <span className='border border-gray-500 w-48 h-0 text-center'></span>  or <span className='border border-gray-500 w-48 h-0 text-center'></span>
                     </span>
-                    <button className="hover:bg-green-500 hover:text-white active:bg-green-400 active:font-bold border text-black  border-black p-2.5 rounded-md justify-center flex gap-2"><img width={21} src="/google.png" alt="" />Sign in with Google</button>
+                    <button className="hover:bg-green-500 hover:text-white active:bg-green-400 active:font-bold border text-black  border-black p-2.5 rounded-md justify-center flex gap-2"><img width={21} src="/google.png" alt="" />Sign Up with Google</button>
                     <div className="flex gap-2 justify-center m-2">
                         <button><img width={30} src="/facebook.png" alt="" /></button>
                         <button><img width={30} src="/linkedin.png" alt="" /></button>
@@ -96,7 +122,7 @@ const page = () => {
                         <span className='text-green-500'><input className='text-green-500 fill-green-500' type="checkbox" /> &nbsp; Remember me </span>
                         <span> <a className='hover:underline text-green-500' href="">Forgot password?</a></span>
                     </div>
-                    <button type='submit' className='hover:border border-black text-white hover:bg-green-600 active:bg-green-500 bg-green-500 p-3 text-center rounded-md font-bold'>Sign in to your account?</button>
+                    <button type='submit' className='hover:border border-black text-white hover:bg-green-600 active:bg-green-500 bg-green-500 p-3 text-center rounded-md font-bold'>Sign up to your account?</button>
                     <p className='text-red-500' >{error && error}</p>
                 </form>
             </div>

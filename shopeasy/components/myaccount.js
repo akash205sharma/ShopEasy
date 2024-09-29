@@ -25,7 +25,7 @@ const myaccount = () => {
             <NavigationMenuTrigger>
               {session ? (<>
                 {/* <div>Name  {session.user.name}</div> */}
-                <div><img width={30} height={30} src={session.user.image} alt="" /></div>
+                <div><img width={30} height={30} src={session.user.image } alt="" />{session.user.name}</div>
               </>
               ) : (
                 <div className='flex w-[110px] p-[-30px] h-[30px] align-bottom items-end ' >
@@ -48,11 +48,19 @@ const myaccount = () => {
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <div onClick={() => { signOut() }} >Sign Out</div>
                 </NavigationMenuLink>
-              ) : (
+              ) : (<>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
 
                   <Link className='w-[125px]' href={"/login"} >Login</Link>
                 </NavigationMenuLink>
+                <Link className='bg-red-500 w-[125px]' href={"/signup"} >
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <h1 className=' w-[125px]' >
+                    Sign Up
+                    </h1>
+                  </NavigationMenuLink>
+                </Link>
+              </>
 
               )}
 
