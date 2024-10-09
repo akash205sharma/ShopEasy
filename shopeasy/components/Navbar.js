@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <div className=' bg-banner bg-contain sticky top-0 bg-white z-10'>
       <div className='flex items-center h-[120px] w-[98vw]'>
-        <img src="https://nest-frontend-v6.vercel.app/assets/imgs/theme/logo.svg" alt="" />
+        <img width={150}  src="logo.png" alt="" />
         <div className='flex border border-green-500 rounded-md w-[740px] mr-28 ml-10 p-0 '>
           <ItemSearch />
           <input className='w-full outline-none ' type="text" placeholder='Search For items' />
