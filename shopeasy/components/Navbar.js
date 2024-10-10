@@ -1,13 +1,22 @@
 "use client"
-import React from 'react'
+import React ,{useContext} from 'react'
 import Badge from './badge'
 import ItemSearch from './ItemSearch'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import Myaccount from './myaccount'
 import { decodeBase64, encodeBase64 } from 'bcryptjs'
+
+import CartContext from '@/context/CartContext'
+
+
+
 function Navbar() {
   const { data, session } = useSession();
+  
+  const {cart} =useContext(CartContext)
+
+
   return (
     <div className=' bg-banner bg-contain sticky top-0 bg-white z-10'>
       <div className='flex items-center h-[120px] w-[98vw]'>
@@ -31,7 +40,7 @@ function Navbar() {
           </div>
           <Link href="/cart" >
             <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
-              <img src="cart.svg" alt="" /> Cart <Badge v={5} />
+              <img src="cart.svg" alt="" /> Cart <Badge v={cart?.cartItems?.length || 0} />
             </div>
           </Link>
           <Myaccount />

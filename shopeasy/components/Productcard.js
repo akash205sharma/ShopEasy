@@ -15,7 +15,7 @@ const Productcard = ({ item }) => {
 
         addItemToCart({
             item:item,
-            quatity : 1,
+            quantity : 1,
         })
 
         toast("Item is Added to Cart", {

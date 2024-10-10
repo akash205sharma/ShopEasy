@@ -7,14 +7,14 @@ import CartContext from '@/context/CartContext';
 const page = () => {
 
 
-    const { cart, addItemToCart } = useContext(CartContext);
-    console.log(cart)
+    const { cart, addItemToCart, deleteItem } = useContext(CartContext);
+    // console.log(cart)
 
     const star = 50;
 
     const handelQuatity=(e,i)=>{
         e.preventDefault()
-        console.log( i , e.target.value )
+        // console.log( i , e.target.value )
 
         i.quantity=e.target.value;
         addItemToCart({item:i.item, quantity:i.quantity} )
@@ -69,7 +69,7 @@ const page = () => {
                                     <td className="">
                                         <h4 className="">{i.item.price} </h4>
                                     </td>
-                                    <td><img width={40} src="delete.png" alt="" /></td>
+                                    <td onClick={ () => { deleteItem({item:i.item}) }} ><img width={40} src="delete.png" alt="" /></td>
                                 </tr>
                             )
                         })}
