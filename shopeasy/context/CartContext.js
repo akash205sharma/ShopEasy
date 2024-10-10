@@ -7,49 +7,56 @@ const CartContext = createContext()
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
 
-    const router = useRouter
+    const router = useRouter()
 
-    const addItemToCart = async ({
-        product,
-        name,
-        price,
-        image,
-        stock,
-        seller,
-        quantity = 1,
-    }) => {
-        const item = {
-            product,
-            name,
-            price,
-            image,
-            stock,
-            seller,
-            quantity,
-        };
-        
-        const isItemExist=cart?.cartItems?.find(
-            (i)=>i.product===item.product
+    useEffect(() => {
+        setCartToState()
+    }, [])
+
+    const setCartToState = () => {
+        setCart(
+            localStorage.getItem('cart')
+                ? JSON.parse(localStorage.getItem('cart'))
+                : []
+        )
+
+    }
+
+
+    const addItemToCart = async ({ item }) => {
+
+        const isItemExist = cart?.cartItems?.find(
+            (i) => i._id === item._id
         )
         let newCartItems;
 
-        if(isItemExist){
-            newCartItems=cart?.cartItems?.map((i)=>{
-                i.product === isItemExist.product ? item : i
+        if (isItemExist) {
+            newCartItems = cart?.cartItems?.map((i) => {
+                i._id === item._id ? item : i
             })
         }
+        
         else {
-            newCartItems = [...(cart?.cartItems || []),item]
+            newCartItems = [...(cart?.cartItems || []), item]
         }
-        localStorage.setItem("cart",JSON.stringify({ cartItems : newCartItems }))
+
+        localStorage.setItem("cart", JSON.stringify({ cartItems: newCartItems }))
+
+        // Update the state to reflect the changes in the UI
+        setCart({ cartItems: newCartItems });
+
     }
+
+
+
 
     return (
         <CartContext.Provider
-            value={{ cart, }}
+            value={{ cart, addItemToCart, }}
         >
             {children}
         </CartContext.Provider>
     );
 };
 
+export default CartContext;

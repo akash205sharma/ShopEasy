@@ -21,6 +21,7 @@ const Showroom = () => {
 
 
   useEffect(() => {
+
     const fetchProducts = async () => {
 
       const filteredProducts = await fetchFilteredproducts(minprice, maxprice) // Fetch products with the new state values
@@ -77,8 +78,8 @@ const Showroom = () => {
       {/*  produtbar  */}
       <div className='grid grid-cols-4 ml-[30px] w-[100%] overflow-scroll no-scrollbar '>
 
-        {products.map((item, index) => (
-          <Productcard key={index} item={item} />
+        {products.map((item) => (
+          <Productcard key={item._id} item={item} />
         ))}
 
 

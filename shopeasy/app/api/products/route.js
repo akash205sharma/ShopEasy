@@ -17,13 +17,24 @@ export async function GET(req) {
         const client = await clientPromise;
         const db = client.db('ShopEasy'); // Replace with your database name
         const collection = db.collection('products'); // Replace with your collection name
+
+
         const data = await collection.find({
             price: {
                 $gte: minprice || 0,  // If minprice is not provided, default to 0
                 $lte: maxprice || 100  // If maxprice is not provided, default to no upper limit
             }
         }).toArray();
-        return new Response(JSON.stringify(data), {
+
+
+        // Convert ObjectId to string
+        const formattedData = data.map(item => ({
+            ...item,
+            _id: item._id.toString(),  // Convert ObjectId to string
+        }));
+
+
+        return new Response(JSON.stringify(formattedData), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
