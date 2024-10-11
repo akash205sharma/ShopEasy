@@ -8,7 +8,7 @@ const Productcard = ({ item }) => {
 
     // console.log(item._id);
 
-    const {cart,addItemToCart} = useContext(CartContext);
+    const {cart,addItemToCart,deleteItem} = useContext(CartContext);
     const star = item.rating * 20;
     
     const addToCartHandeler = () => {
@@ -23,6 +23,7 @@ const Productcard = ({ item }) => {
             action: {
                 label: "Remove",
                 onClick: () =>{
+                    deleteItem({item:item});
                     toast("Item is Removed")
                 },
             },

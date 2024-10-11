@@ -7,17 +7,27 @@ import CartContext from '@/context/CartContext';
 const page = () => {
 
 
+
     const { cart, addItemToCart, deleteItem } = useContext(CartContext);
-    // console.log(cart)
+
+
+    const DeliveryCharges = 50;
+    let SubTotal = 0;
+    cart?.cartItems?.forEach(key => {
+        SubTotal+= Number(key.item.price)* Number(key.quantity);
+    });
+
+
+
 
     const star = 50;
 
-    const handelQuatity=(e,i)=>{
+    const handelQuatity = (e, i) => {
         e.preventDefault()
         // console.log( i , e.target.value )
 
-        i.quantity=e.target.value;
-        addItemToCart({item:i.item, quantity:i.quantity} )
+        i.quantity = e.target.value;
+        addItemToCart({ item: i.item, quantity: i.quantity })
     }
 
 
@@ -58,18 +68,18 @@ const page = () => {
                                             <div className='text-[15px]' >({star / 20})</div>
                                         </div>
                                     </td>
-                                    <td className="">
-                                        <h4 className="">{i.item.price} </h4>
+                                    <td className="text-center text-xl text-green-600">
+                                        <h4 className="">Rs. {i.item.price} </h4>
                                     </td>
-                                    <td className=" flex justify-center items-center h-[160px] " >
-                                        <div className="border flex items-center justify-center border-green-600 rounded-md w-[100px] h-16">
-                                            <div><input onChange={(e) => { handelQuatity(e,i) }} className="w-[100px] h-16" type="number" value={i.quantity} /> </div>
+                                    <td className=" text-xl text-green-600 flex justify-center items-center h-[160px] " >
+                                        <div className=" border flex items-center justify-center border-green-600 rounded-md w-[100px] h-16">
+                                            <div><input onChange={(e) => { handelQuatity(e, i) }} className="text-center w-[100px] h-16" type="number" value={i.quantity} /> </div>
                                         </div>
                                     </td>
-                                    <td className="">
-                                        <h4 className="">{i.item.price} </h4>
+                                    <td className="text-center text-xl text-green-600">
+                                        <h4 className="">{i.item.price * i.quantity} </h4>
                                     </td>
-                                    <td onClick={ () => { deleteItem({item:i.item}) }} ><img width={40} src="delete.png" alt="" /></td>
+                                    <td onClick={() => { deleteItem({ item: i.item }) }} ><img width={40} src="delete.png" alt="" /></td>
                                 </tr>
                             )
                         })}
@@ -85,15 +95,15 @@ const page = () => {
                     <div className="m-8" >
                         <div className="border p-6 text-2xl flex justify-between " >
                             <span>SubTotal</span>
-                            <span className="text-green-600 font-sans font-semibold" >$ {3595} </span>
+                            <span className="text-green-600 font-sans font-semibold" >$ {SubTotal} </span>
                         </div>
                         <div className="border p-6 text-2xl flex justify-between " >
                             <span>Dilevery Charges</span>
-                            <span className="text-green-600 font-sans font-semibold" >$ {3595} </span>
+                            <span className="text-green-600 font-sans font-semibold" >$ {DeliveryCharges} </span>
                         </div>
                         <div className="border p-6 text-2xl flex justify-between " >
                             <span>Total</span>
-                            <span className="text-green-600 font-sans font-semibold" >$ {3595} </span>
+                            <span className="text-green-600 font-sans font-semibold" >$ {SubTotal + DeliveryCharges} </span>
                         </div>
                         <div className="bg-green-500 flex items-center justify-center h-[8vh] rounded-md mt-2 ">
                             Proceed To Checkout
