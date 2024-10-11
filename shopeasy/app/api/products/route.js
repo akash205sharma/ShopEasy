@@ -33,6 +33,7 @@ export async function GET(req) {
             ...item,
             _id: item._id.toString(),  // Convert ObjectId to string
         }));
+        
 
 
         return new Response(JSON.stringify(formattedData), {

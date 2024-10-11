@@ -7,7 +7,7 @@ export async function fetchproducts() {
 
 export async function fetchproduct(id) {
     // console.log(id);
-    const res = await fetch(`http://localhost:3000/api/product/${id}`);
+    const res = await fetch(`http://localhost:3000/api/product?id=${id}`);
     const data = await res.json();
     return data;
 

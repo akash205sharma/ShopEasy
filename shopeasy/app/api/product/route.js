@@ -2,9 +2,12 @@ import clientPromise from '@/lib/mongodb';
 
 import { ObjectId } from 'mongodb';
 
-export async function GET(req, { params }) {
+export async function GET(req) {
     try {
-        const { id } = params; // Extract the product id from the URL parameters
+        const searchParams = new URL(req.url).searchParams;
+        console.log(searchParams.get('id'));
+        
+        const id = searchParams.get('id');
 
         const client = await clientPromise;
         const db = client.db('ShopEasy'); // Replace with your database name
@@ -12,7 +15,7 @@ export async function GET(req, { params }) {
 
         // Find the product by its ObjectId
         const product = await collection.findOne({ _id: new ObjectId(id) });
-
+        
         if (!product) {
             return new Response(JSON.stringify({ error: 'Product not found' }), {
                 status: 404,
@@ -25,6 +28,7 @@ export async function GET(req, { params }) {
         // Convert ObjectId to string before sending response
         product._id = product._id.toString();
 
+        // console.log(product)
         return new Response(JSON.stringify(product), {
             status: 200,
             headers: {
