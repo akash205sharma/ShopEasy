@@ -56,7 +56,7 @@ const page = () => {
                         {cart?.cartItems?.map((i) => {
                             return (
                                 <tr className=" border h-[50px] ">
-                                    <td className=""><img className="border m-5 p-2" width={120} src={i.item.img} alt="#" /></td>
+                                    <td className=""><img className=" ml-1 " width={150} src={i.item.img} alt="#" /></td>
                                     <td className="">
                                         <h6 className=""><a className=" mb-10" href="">{i.item.name}</a></h6>
                                         <div className="">
