@@ -5,6 +5,14 @@ export async function fetchproducts() {
     return data;
 }
 
+export async function fetchproduct(id) {
+    // console.log(id);
+    const res = await fetch(`http://localhost:3000/api/product/${id}`);
+    const data = await res.json();
+    return data;
+
+}
+
 export async function fetchFilteredproducts(minprice,maxprice) {
     // console.log( " Fetch Product fuction called ",minprice,maxprice );
 

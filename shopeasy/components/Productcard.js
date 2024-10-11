@@ -3,6 +3,7 @@
 import React, {useContext} from 'react'
 import { toast } from "sonner"
 import CartContext from '@/context/CartContext'
+import Link from 'next/link'
 
 const Productcard = ({ item }) => {
 
@@ -33,6 +34,7 @@ const Productcard = ({ item }) => {
 
 
     return (
+        <Link href={item._id} >
         <div className=' group bg-white relative hover:shadow-xl pb-[26rem] m-4 p-5 pt-0 w-[250px] h-[400px] border rounded-lg '>
             <div className='inset-0 opacity-0 -z-10 transition-all duration-300 group-hover:opacity-100 group-hover:z-10 w-[30px] absolute left-[200px] top-3'>
                 <img src="/heart-g-1.svg" alt="" />
@@ -55,6 +57,7 @@ const Productcard = ({ item }) => {
 
             </div>
         </div>
+        </Link>
     )
 }
 
