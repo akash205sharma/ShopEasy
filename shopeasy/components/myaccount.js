@@ -15,7 +15,7 @@ import {
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
 import { useSession, signIn, signOut } from 'next-auth/react'
 
-const myaccount = () => {
+const Myaccount = () => {
   const { data: session } = useSession()
   return (
     <div>
@@ -72,4 +72,4 @@ const myaccount = () => {
   )
 }
 
-export default myaccount
+export default Myaccount
