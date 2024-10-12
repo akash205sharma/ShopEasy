@@ -8,7 +8,7 @@ const banner = () => {
                     Stay home & get your daily
                     needs from our shop
                 </div>
-                <div className='pt-5 text-[18px] text-gray-600' >Start You'r Daily Shopping with <span className='text-green-400'> ShopEasy</span> </div>
+                <div className='pt-5 text-[18px] text-gray-600' >Start You&apos;r Daily Shopping with <span className='text-green-400'> ShopEasy</span> </div>
                 <div className='mt-10 rounded-full w-[30vw] flex bg-white justify-between ' >
                     <div className='bg-plane2 bg-contain w-[29px] h-[30px] top-4 left-6 relative '></div>
                     <input name type="text" placeholder='Your email address' />

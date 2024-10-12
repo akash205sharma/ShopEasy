@@ -67,7 +67,8 @@ const Page = () => {
             <div className=' z-50 p-8 h-[70vh] w-[550px] border border-green-400 bg-[#fdfeff] flex flex-col gap-4 m-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <Link href={"/"}><button className=' absolute top-7 right-7 border border-black rounded-full w-6 text-[15px]' > <img src="/left-arrow.png" alt="" /> </button> </Link>
                 <h1 className='text-2xl font-sans font-bold'>Sign in To Your Account</h1>
-                <h6 className='text-sm'>Open Your Account in seconds. Don't have an account? <Link className='text-blue-500 hover:underline' href="/signup">Sign up.</Link></h6>
+                <h6 className='text-sm'>Open Your Account in seconds. Don&apos;t have an account? <Link className='text-blue-500 hover:underline' href="/signup">Sign up.</Link></h6>
+
                 <form onSubmit={(e) => { handleSubmit(e) }} >
                     <div className='text-[15px] flex gap-3'>
                         <div className=' flex flex-col gap-1'>
