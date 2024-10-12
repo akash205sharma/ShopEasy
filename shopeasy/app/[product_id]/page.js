@@ -6,7 +6,7 @@ import { fetchproduct } from '@/actions/product';
 import CartContext from '@/context/CartContext';
 import { toast } from "sonner"
 
-const page = (params) => {
+const Page = (params) => {
 
     const { product_id } = params.params;
     const [product, setProduct] = useState({})
@@ -69,6 +69,6 @@ const page = (params) => {
     )
 }
 
-export default page
+export default Page
 
 
