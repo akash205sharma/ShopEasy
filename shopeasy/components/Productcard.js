@@ -53,7 +53,7 @@ const Productcard = ({ item }) => {
                     </div>
                     <div className='text-[15px]' > By <span className='text-green-600'>{item.company}</span> </div>
                     <div className='flex p-2 w-[100%] mb-10'>
-                        <div className='w-[50%] p-3 text-[20px] text-green-600 font-bold'>  ${item.price}</div>
+                        <div className='w-[50%] p-2 text-[20px] text-green-600 font-bold'> <span className='text-[1rem]'> Rs.</span> {item.price}</div>
                         <div onClick={(e) => { addToCartHandeler(e) }} className='w-[50%] flex items-center p-2 text-[20px] hover:text-white hover:bg-green-500 active:text-green-600 active:bg-green-200 text-green-600 font-bold bg-green-200 rounded-lg'> <img width={25} src="cart.svg" alt="" />Add</div>
                     </div>
 

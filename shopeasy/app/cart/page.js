@@ -64,7 +64,7 @@ const page = () => {
                                                 <div className="">
                                                 </div>
                                             </div>
-                                            <div className="bg-star-b bg-contain w-[73px] h-[15px]"><div style={{ width: `${star}%` }} className={`bg-star-y bg-contain h-[15px]`}></div> </div>
+                                            <div className="bg-star-b bg-contain w-[73px] h-[15px]"><div style={{ width: `Rs.{star}%` }} className={`bg-star-y bg-contain h-[15px]`}></div> </div>
                                             <div className='text-[15px]' >({star / 20})</div>
                                         </div>
                                     </td>
@@ -94,15 +94,15 @@ const page = () => {
                     <div className="m-8" >
                         <div className="border p-6 text-2xl flex justify-between " >
                             <span>SubTotal</span>
-                            <span className="text-green-600 font-sans font-semibold" >$ {SubTotal} </span>
+                            <span className="text-green-600 font-sans font-semibold" >Rs. {SubTotal} </span>
                         </div>
                         <div className="border p-6 text-2xl flex justify-between " >
                             <span>Dilevery Charges</span>
-                            <span className="text-green-600 font-sans font-semibold" >$ {DeliveryCharges} </span>
+                            <span className="text-green-600 font-sans font-semibold" >Rs. {DeliveryCharges} </span>
                         </div>
                         <div className="border p-6 text-2xl flex justify-between " >
                             <span>Total</span>
-                            <span className="text-green-600 font-sans font-semibold" >$ {SubTotal + DeliveryCharges} </span>
+                            <span className="text-green-600 font-sans font-semibold" >Rs. {SubTotal + DeliveryCharges} </span>
                         </div>
                         <div className="bg-green-500 flex items-center justify-center h-[8vh] rounded-md mt-2 ">
                             Proceed To Checkout
