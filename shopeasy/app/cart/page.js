@@ -26,7 +26,7 @@ const page = () => {
         e.preventDefault()
         // console.log( i , e.target.value )
 
-        i.quantity = e.target.value;
+        i.quantity = (e.target.value>0)?e.target.value:0;
         addItemToCart({ item: i.item, quantity: i.quantity })
     }
 
@@ -88,7 +88,6 @@ const page = () => {
                 </table>
 
             </div>
-
 
             <div className="flex m-10  justify-center items-start fixed top-[120px] right-[0px]" >
                 <div className='  h-[50vh] w-[30vw] border border-green-600' >

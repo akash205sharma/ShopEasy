@@ -42,7 +42,7 @@ const Productcard = ({ item }) => {
                     <img src="/heart-g-1.svg" alt="" />
                 </div>
                 <div>
-                    <img src={item.img} alt="" />
+                    <img className="max-h-[200px]" src={item.img} alt="" />
                 </div>
                 <div className='flex flex-col space-y-1 '>
                     <div className='text-gray-600' >{item.category}</div>

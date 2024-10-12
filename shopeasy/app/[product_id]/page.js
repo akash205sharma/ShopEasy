@@ -56,7 +56,7 @@ const page = (params) => {
 
     return (
         <div className="flex" >
-            <div className="50vw border " ><img width={530} src={product.img} alt="" /></div>
+            <div className="50vw border " ><img className="max-h-[500px]" width={530} src={product.img} alt="" /></div>
             <div className="p-10 border w-[40vw]">
                 <div className="text-5xl p-5 pb-1 " >{product.name}</div>
                 <div className="p-5 pt-0 text-green-600 text-2xl" >{product.category}</div>

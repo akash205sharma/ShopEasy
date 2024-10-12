@@ -1,4 +1,5 @@
-import clientPromise from '@/lib/mongodb';
+import Product from "@/models/product";
+import connect from "@/lib/db";
 
 import { ObjectId } from 'mongodb';
 
@@ -9,12 +10,10 @@ export async function GET(req) {
         
         const id = searchParams.get('id');
 
-        const client = await clientPromise;
-        const db = client.db('ShopEasy'); // Replace with your database name
-        const collection = db.collection('products'); // Replace with your collection name
+        await connect();
 
         // Find the product by its ObjectId
-        const product = await collection.findOne({ _id: new ObjectId(id) });
+        const product = await Product.findOne({ _id: new ObjectId(id) });
         
         if (!product) {
             return new Response(JSON.stringify({ error: 'Product not found' }), {

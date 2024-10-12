@@ -35,9 +35,11 @@ function Navbar() {
               {/* <Badge v={3} /> */}
             </div>
           </Link>
+          <Link href="/admin" >
           <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
-            <img src="heart.svg" alt="" />Wishlist <Badge v={5} />
+            <img src="" alt="" /> Admin
           </div>
+          </Link>
           <Link href="/cart" >
             <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
               <img src="cart.svg" alt="" /> Cart <Badge v={cart?.cartItems?.length || 0} />
