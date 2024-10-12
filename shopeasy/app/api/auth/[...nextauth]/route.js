@@ -74,6 +74,8 @@ export const authOptions = NextAuth({
         }),
         // ...add more providers here
     ],
+    
+    secret: process.env.NEXTAUTH_SECRET,
 
     callbacks: {
         async signIn({ user, account }) {
