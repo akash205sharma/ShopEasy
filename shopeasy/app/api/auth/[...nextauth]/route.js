@@ -1,7 +1,6 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials";
-import mongoose from "mongoose";
 import User from "@/models/user";
 import { signOut } from "next-auth/react";
 import connect from "@/lib/db";

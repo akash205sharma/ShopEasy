@@ -20,17 +20,6 @@ const page = (params) => {
 
         fetchProductById();
 
-        // setProduct({
-        //     "_id": {
-        //         "$oid": "66f3b71044848d40c2fbf96b"
-        //     },
-        //     "img": "http://localhost:3000/product-1.jpg",
-        //     "price": 25.5,
-        //     "category": "Snacks",
-        //     "rating": 2.7,
-        //     "name": "Healthy Trail Mix",
-        //     "company": "ShopEasy"
-        // });
 
     }, [])
 
