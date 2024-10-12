@@ -14,7 +14,7 @@ const Page = () => {
     const DeliveryCharges = 50;
     let SubTotal = 0;
     cart?.cartItems?.forEach(key => {
-        SubTotal+= Number(key.item.price)* Number(key.quantity);
+        SubTotal += Number(key.item.price) * Number(key.quantity);
     });
 
 
@@ -26,7 +26,7 @@ const Page = () => {
         e.preventDefault()
         // console.log( i , e.target.value )
 
-        i.quantity = (e.target.value>0)?e.target.value:0;
+        i.quantity = (e.target.value > 0) ? e.target.value : 0;
         addItemToCart({ item: i.item, quantity: i.quantity })
     }
 
@@ -53,36 +53,43 @@ const Page = () => {
                     </thead>
                     <tbody>
 
-                        {cart?.cartItems?.map((i) => {
+                        {cart?.cartItems?.map((i, index) => {
                             return (
-                                <tr className=" border h-[50px] ">
-                                    <td className=""><img className=" ml-1 " width={150} src={i.item.img} alt="#" /></td>
+                                <tr key={i.item.id || index} className="border h-[50px]">
+                                    <td className=""><img className="ml-1" width={150} src={i.item.img} alt="#" /></td>
                                     <td className="">
-                                        <h6 className=""><a className=" mb-10" href="">{i.item.name}</a></h6>
+                                        <h6 className=""><a className="mb-10" href="">{i.item.name}</a></h6>
                                         <div className="">
                                             <div className="">
                                                 <div className="">
                                                 </div>
                                             </div>
-                                            <div className="bg-star-b bg-contain w-[73px] h-[15px]"><div style={{ width: `Rs.{star}%` }} className={`bg-star-y bg-contain h-[15px]`}></div> </div>
-                                            <div className='text-[15px]' >({star / 20})</div>
+                                            <div className="bg-star-b bg-contain w-[73px] h-[15px]">
+                                                <div style={{ width: `Rs.{star}%` }} className={`bg-star-y bg-contain h-[15px]`}></div>
+                                            </div>
+                                            <div className='text-[15px]'>({star / 20})</div>
                                         </div>
                                     </td>
                                     <td className="text-center text-xl text-green-600">
-                                        <h4 className="">Rs. {i.item.price} </h4>
+                                        <h4 className="">Rs. {i.item.price}</h4>
                                     </td>
-                                    <td className=" text-xl text-green-600 flex justify-center items-center h-[160px] " >
-                                        <div className=" border flex items-center justify-center border-green-600 rounded-md w-[100px] h-16">
-                                            <div><input onChange={(e) => { handelQuatity(e, i) }} className="text-center w-[100px] h-16" type="number" value={i.quantity} /> </div>
+                                    <td className="text-xl text-green-600 flex justify-center items-center h-[160px]">
+                                        <div className="border flex items-center justify-center border-green-600 rounded-md w-[100px] h-16">
+                                            <div>
+                                                <input onChange={(e) => { handelQuatity(e, i) }} className="text-center w-[100px] h-16" type="number" value={i.quantity} />
+                                            </div>
                                         </div>
                                     </td>
                                     <td className="text-center text-xl text-green-600">
-                                        <h4 className="">{i.item.price * i.quantity} </h4>
+                                        <h4 className="">{i.item.price * i.quantity}</h4>
                                     </td>
-                                    <td onClick={() => { deleteItem({ item: i.item }) }} ><img width={40} src="delete.png" alt="" /></td>
+                                    <td onClick={() => { deleteItem({ item: i.item }) }}>
+                                        <img width={40} src="delete.png" alt="" />
+                                    </td>
                                 </tr>
                             )
                         })}
+
                     </tbody>
 
                 </table>
