@@ -1,7 +1,7 @@
 
 export async function fetchproducts() {
     // const res = await fetch('http://localhost:3000/api/products');    
-    const res = await fetch('https://shopeasy-nmorlvwga-akash205sharmas-projects.vercel.app/api/products');    
+    const res = await fetch('https://shopeasy-fyssguxjv-akash205sharmas-projects.vercel.app/api/products');    
     const data = await res.json();
     return data;
 }
@@ -9,7 +9,7 @@ export async function fetchproducts() {
 export async function fetchproduct(id) {
     // console.log(id);
     // const res = await fetch(`http://localhost:3000/api/product?id=${id}`);
-    const res = await fetch(`https://shopeasy-nmorlvwga-akash205sharmas-projects.vercel.app/api/product?id=${id}`);
+    const res = await fetch(`https://shopeasy-fyssguxjv-akash205sharmas-projects.vercel.app/api/product?id=${id}`);
     const data = await res.json();
     return data;
 
@@ -18,7 +18,7 @@ export async function fetchproduct(id) {
 export async function fetchFilteredproducts(minprice,maxprice) {
     // console.log( " Fetch Product fuction called ",minprice,maxprice );
     // const res = await fetch(`http://localhost:3000/api/products?minprice=${minprice}&maxprice=${maxprice}`);
-    const res = await fetch(`https://shopeasy-nmorlvwga-akash205sharmas-projects.vercel.app/api/products?minprice=${minprice}&maxprice=${maxprice}`);
+    const res = await fetch(`https://shopeasy-fyssguxjv-akash205sharmas-projects.vercel.app/api/products?minprice=${minprice}&maxprice=${maxprice}`);
     const data = await res.json();
     return data;
 }
@@ -29,7 +29,7 @@ export async function insertProduct(newProduct) {
         // console.log(newProduct);
 
         // const res = await fetch('http://localhost:3000/api/products', {
-        const res = await fetch('https://shopeasy-nmorlvwga-akash205sharmas-projects.vercel.app/api/products', {
+        const res = await fetch('https://shopeasy-fyssguxjv-akash205sharmas-projects.vercel.app/api/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
