@@ -36,13 +36,20 @@ const Showroom = () => {
 
 
 
+  // useEffect(() => {
+  //   if(products.length==0) return
+  //   const filteredProducts = products.filter({minprice:products.minprice})
+    
+  //   setProducts(filteredProducts);
+  
+  // }, [minprice,maxprice])
+  
 
-  // const products=use(fetchproducts());
-  // const products = use(fetchFilteredproducts(minprice, maxprice));
-  // console.log(products);
+
+
 
   return (
-    <div className='h-[calc(100vh-120px)] w-[98vw] flex ' >
+    <div className='h-[calc(100vh-120px)] w-[98vw] flex '>
 
 
       {/* sidebar */}
@@ -65,7 +72,7 @@ const Showroom = () => {
           <div className='mx-[20px] '>
             <input onChange={(e) => { handelminrange(e) }} name='minprice' value={minprice} id='minprice' type="range" min={0} max={75} className='w-[200px] ' />
             <div>Min Price {minprice}</div>
-            <input onChange={(e) => { handelmaxrange(e) }} value={maxprice} id='maxprice' type="range" min={100} max={1000} className='w-[200px]' />
+            <input onChange={(e) => { handelmaxrange(e) }} value={maxprice} id='maxprice' type="range" min={100} max={20000} className='w-[200px]' />
             <div>Max Price {maxprice}</div>
             {/* <div onClick={(e) => { setMinprice(minprice + 1) }} >increase</div> */}
           </div>

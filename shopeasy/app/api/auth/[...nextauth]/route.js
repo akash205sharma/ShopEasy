@@ -6,25 +6,6 @@ import { signOut } from "next-auth/react";
 import connect from "@/lib/db";
 import bcrypt from "bcryptjs";
 
-
-
-
-// export async function GET(request) {}
-
-// export async function HEAD(request) {}
-
-// export async function POST(request) {}
-
-// export async function PUT(request) {}
-
-// export async function DELETE(request) {}
-
-// export async function PATCH(request) {}
-
-// // If `OPTIONS` is not defined, Next.js will automatically implement `OPTIONS` and  set the appropriate Response `Allow` header depending on the other methods defined in the route handler.
-// export async function OPTIONS(request) {}
-
-
 //github sign In
 export const authOptions = NextAuth({
     // Configure one or more authentication providers
@@ -121,10 +102,16 @@ export const authOptions = NextAuth({
         async session({ session }) {
             await connect();
             const dbUser = await User.findOne({ email: session.user.email });
+            session.user.id = dbUser.id
             session.user.email = dbUser.email
             session.user.name = dbUser.name
             session.user.profilepic = dbUser.profilepic
             session.user.username = dbUser.username
+            session.user.phone = dbUser.phone
+            session.user.address = dbUser.address
+            session.user.dateOfBirth = dbUser.dateOfBirth
+            session.user.isAdmin = dbUser.isAdmin
+            // session.user = dbUser;     // it will return whole user profile
             return session;
         }
 
@@ -135,3 +122,4 @@ export const authOptions = NextAuth({
 
 //56:58 sigma video 
 export { authOptions as GET, authOptions as POST }
+

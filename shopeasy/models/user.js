@@ -3,15 +3,60 @@ import mongoose from "mongoose";
 import { boolean } from "zod";
 const { Schema, model, models } = mongoose;
 
+
+
+const orderSchema = new Schema({
+  // orderId: { type: String, required: true },
+  items: [
+    {   
+      productId: { type: String , required: true },
+      name:{type:String},
+      price:{type:Number},
+      img:{type:String},
+      quantity: { type: Number, required: true },
+    },  
+  ],
+  totalAmount: { type: Number, required: true },
+  // paymentStatus: { type: String, enum: ['Pending', 'Paid', 'Failed'], default: 'Pending' },
+  // shippingStatus: { type: String, enum: ['Pending', 'Shipped', 'Delivered', 'Cancelled'], default: 'Pending' },
+  orderDate: { type: Date, default: Date.now },
+  // deliveryDate: { type: Date },
+  // shippingAddress: { type: addressSchema, required: true },
+  // paymentMethod: { type: String, enum: ['Card', 'PayPal', 'CashOnDelivery'], required: true },
+});
+
+const adminOrderSchema = new Schema({
+  userId:{ type: String, required: true },
+  items: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+      name:{type:String},
+      price:{type:Number},
+      img:{type:String},
+      quantity: { type: Number, required: true },
+    },
+  ],
+  totalAmount: { type: Number, required: true },
+  orderDate: { type: Date, default: Date.now },
+});
+
+
+
 const UserSchema = new Schema({
   email: { type: String, required: true },
   name: { type: String },
-  username: { type: String },
-  isOAuthUser: {type: String },
-  password: { type: String, required: true},
+  isOAuthUser: { type: String },
+  password: { type: String, required: true },
   profilepic: { type: String },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+  isAdmin: { type: Boolean, default: false },
+  address: { type: String }, 
+  orderHistory: [orderSchema], 
+  adminOrderHistory: [adminOrderSchema], 
+  dateOfBirth: { type: Date }, 
+  phone: { type: String }, 
+
 
 },
   { timestamps: true }
@@ -92,3 +137,5 @@ const User = models.User || mongoose.model('User', userSchema);
 export default User;
 
 */
+
+

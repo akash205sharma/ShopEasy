@@ -19,7 +19,7 @@ import connect from "@/lib/db";
 
 //         // not working for directly using useEffect only working for use(fetch) in server component
 //         // const { minprice, maxprice } = parseFloat(req.query);        
-        
+
 
 //         const client = await clientPromise;
 //         const db = client.db('ShopEasy'); // Replace with your database name
@@ -39,7 +39,7 @@ import connect from "@/lib/db";
 //             ...item,
 //             _id: item._id.toString(),  // Convert ObjectId to string
 //         }));
-        
+
 
 
 //         return new Response(JSON.stringify(formattedData), {
@@ -72,7 +72,7 @@ export async function GET(req) {
 
         // not working for directly using useEffect only working for use(fetch) in server component
         // const { minprice, maxprice } = parseFloat(req.query);        
-        
+
         await connect();
 
 
@@ -89,7 +89,7 @@ export async function GET(req) {
             ...item,
             _id: item._id.toString(),  // Convert ObjectId to string
         }));
-        
+
 
 
         return new Response(JSON.stringify(formattedData), {
@@ -117,11 +117,11 @@ export const POST = async (request) => {
         await connect();
 
         // Parse the request body to get the product data
-        const body = await request.json();  
+        const body = await request.json();
 
         // Validate that all required fields are present
-        const { img, category, name, company, price } = body;
-        
+        const { img, category, name, company, price, adminId } = body;
+
         if (!img || !category || !name || !company || typeof price !== 'number') {
             return new Response(JSON.stringify({ error: "Missing required fields" }), {
                 status: 400,  // Bad Request
@@ -133,6 +133,7 @@ export const POST = async (request) => {
 
         // Create a new product instance with the provided data
         const newProduct = new Product({
+            adminId,
             img,
             category,
             name,
@@ -142,6 +143,7 @@ export const POST = async (request) => {
 
         // Save the new product to the database
         await newProduct.save();
+
 
         // Return a success response with the created product's data
         return new Response(JSON.stringify({ message: "Product inserted successfully", product: newProduct }), {

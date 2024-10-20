@@ -1,74 +1,91 @@
-"use client"
 
-import React from 'react'
-import { useState, useEffect, useContext } from 'react';
-import { fetchproduct } from '@/actions/product';
-import CartContext from '@/context/CartContext';
-import { toast } from "sonner"
+"use client";
+
+import React, { useState, useEffect, useContext } from "react";
+import { fetchproduct } from "@/actions/product";
+import CartContext from "@/context/CartContext";
+import { toast } from "sonner";
 
 const Page = (params) => {
+  const { product_id } = params.params;
+  const [product, setProduct] = useState({});
+  const { cart, addItemToCart, deleteItem } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
 
-    const { product_id } = params.params;
-    const [product, setProduct] = useState({})
-    const { cart, addItemToCart, deleteItem } = useContext(CartContext);
-    const [quantity, setQuantity] = useState(1);
-    useEffect(() => {
-        const fetchProductById = async () => {
-            const product = await fetchproduct(product_id) // Fetch products with the new state values
-            setProduct(product);
-        };
+  useEffect(() => {
+    const fetchProductById = async () => {
+      const product = await fetchproduct(product_id); // Fetch product details
+      setProduct(product);
+    };
+    fetchProductById();
+  }, [product_id]);
 
-        fetchProductById();
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    addItemToCart({
+      item: product,
+      quantity: quantity,
+    });
 
+    toast("Item added to cart", {
+      description: product.name,
+      action: {
+        label: "Remove",
+        onClick: () => {
+          deleteItem({ item: product });
+          toast("Item removed from cart");
+        },
+      },
+    });
+  };
 
-    }, [])
+  return (
+    <div className="flex flex-col md:flex-row items-start justify-center gap-10 p-10 bg-gray-50 min-h-screen">
+      {/* Product Image Section */}
+      <div className="w-full md:w-[50%] flex justify-center items-center border rounded-lg shadow-md bg-white">
+        <img className="max-h-[500px] p-5" width={500} src={product.img} alt={product.name} />
+      </div>
 
-    const addToCartHandeler = (e) => {
-        e.preventDefault()
-        addItemToCart({
-            item: product,
-            quantity: quantity,
-        })
+      {/* Product Details Section */}
+      <div className="w-full md:w-[40%] p-5 border rounded-lg shadow-md bg-white">
+        <h1 className="text-4xl font-bold text-gray-800 mb-3">{product.name}</h1>
+        <p className="text-xl text-green-600 mb-5">{product.category}</p>
+        <p className="text-3xl font-semibold text-green-600 mb-5">Rs. {product.price}</p>
+        <p className="text-gray-600 mb-5 leading-6">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nobis iusto, nihil, quo nostrum labore
+          laudantium. {product.description || "More details about the product..."}
+        </p>
 
-        toast("Item is Added to Cart", {
-            description: product.name,
-            action: {
-                label: "Remove",
-                onClick: () => {
-                    deleteItem({ item: product });
-                    toast("Item is Removed")
-                },
-            },
-        })
-    }
+        {/* Quantity and Add to Cart */}
+        <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="flex justify-center bg-gray-300 hover:bg-gray-400 text-gray-800 w-[40px] h-[40px] rounded-lg items-center"
+            >
+              <img width={20} src="/left.png" alt="decrease" />
+            </button>
 
+            <div className="text-gray-800 text-2xl font-bold w-[50px] text-center">{quantity}</div>
 
-    return (
-        <div className="flex" >
-            <div className="50vw border " ><img className="max-h-[500px]" width={530} src={product.img} alt="" /></div>
-            <div className="p-10 border w-[40vw]">
-                <div className="text-5xl p-5 pb-1 " >{product.name}</div>
-                <div className="p-5 pt-0 text-green-600 text-2xl" >{product.category}</div>
-                <div className="text-4xl p-5 text-green-600 " >$ {product.price}</div>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nobis iustdolor sit amet consectetur adipisicing elit. Quo nobis iusto, ere quod sdolor sit amet consectetur adipisicing elit. Quo nobis iusto, ere quod sapiente iste, laudantium, nihil, quo nostrum laboreim.</div>
-                <div className="flex items-center " >
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="flex justify-center bg-gray-300 hover:bg-gray-400 text-gray-800 w-[40px] h-[40px] rounded-lg items-center"
+            >
+              <img width={20} src="/right.png" alt="increase" />
+            </button>
+          </div>
 
-                    <div className="flex gap-2 " >
-
-                        <div onClick={() => { setQuantity(quantity - 1) }} className="flex justify-center bg-green-500 border border-green-600 w-[30px] rounded-lg items-center "><img width={20} src="left.png" alt="" /></div>
-
-                        <div className="border border-green-600 text-green-700 text-2xl w-[50px] p-1 text-center rounded-lg " >{quantity}</div>
-
-                        <div onClick={() => { setQuantity(quantity + 1) }} className="flex justify-center bg-green-500 border border-green-600 w-[30px] rounded-lg items-center "><img width={20} src="right.png" alt="" /></div>
-
-                    </div>
-                    <div onClick={(e) => { addToCartHandeler(e) }} className=" ml-3 active:bg-green-500 hover:bg-green-600 hover:cursor-pointer m-10 p-2 w-60 rounded font-sans text-center bg-green-500 text-white text-2xl" >Add To Cart</div>
-                </div>
-            </div>
+          <button
+            onClick={(e) => addToCartHandler(e)}
+            className="bg-green-500 hover:bg-green-600 text-white font-semibold text-xl px-8 py-3 rounded-lg shadow-lg transition-all duration-300"
+          >
+            Add To Cart
+          </button>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Page
-
-
+export default Page;

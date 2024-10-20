@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
 const ProductSchema = new Schema({
+    adminId:{ type: String , required: true },
     img: { type: String, required: true },
     category: { type: String, required: true },
     name: { type: String, required: true },
@@ -11,7 +12,6 @@ const ProductSchema = new Schema({
     rating: { type: Number, default:0 },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
-
 },
     // { timestamps: true }
 );

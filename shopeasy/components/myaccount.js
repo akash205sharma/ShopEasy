@@ -25,7 +25,7 @@ const Myaccount = () => {
             <NavigationMenuTrigger>
               {session ? (<>
                 {/* <div>Name  {session.user.name}</div> */}
-                <div><img width={30} height={30} src={session.user.profilepic } alt="" />{session.user.name}</div>
+                <div><img width={30} height={30} src={session.user.profilepic} alt="" />{session.user.name}</div>
               </>
               ) : (
                 <div className='flex w-[110px] p-[-30px] h-[30px] align-bottom items-end ' >
@@ -43,6 +43,30 @@ const Myaccount = () => {
                   </div>
                 </NavigationMenuLink>
               </Link>
+              {session && (<>
+                <Link href={"/user/edit_profile"} legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <div className='w-[125px]'>
+                      Update Profile
+                    </div>
+                  </NavigationMenuLink>
+                </Link>
+                <Link href={"/user/orders"} legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <div className='w-[125px]'>
+                      Your Account
+                    </div>
+                  </NavigationMenuLink>
+                </Link>
+                <Link href={"/user/orders"} legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <div className='w-[125px]'>
+                      Your Orders
+                    </div>
+                  </NavigationMenuLink>
+                </Link>
+                </>
+              )}
 
               {session ? (
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -50,13 +74,12 @@ const Myaccount = () => {
                 </NavigationMenuLink>
               ) : (<>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-
                   <Link className='w-[125px]' href={"/login"} >Login</Link>
                 </NavigationMenuLink>
                 <Link className='bg-red-500 w-[125px]' href={"/signup"} >
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     <h1 className=' w-[125px]' >
-                    Sign Up
+                      Sign Up
                     </h1>
                   </NavigationMenuLink>
                 </Link>

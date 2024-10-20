@@ -2,7 +2,7 @@ import User from "@/models/user";
 import connect from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
-
+import { ObjectId } from "mongodb";
 
 // Email password sign create new user
 export const POST = async (request) => {
@@ -43,4 +43,34 @@ export const POST = async (request) => {
 
     }
 
+}
+
+export const PATCH = async (request) => {
+    try {
+
+        const body = await request.json();
+        // console.log(typeof(body.isAdmin));
+
+        await connect();
+
+        await User.updateOne(
+            { email: body.email },
+            { $set: { 
+                ...(body.name && { name: body.name }),
+                ...(body.address && { address: body.address }),
+                ...(body.phone && { phone: body.phone }),
+                ...(body.dateOfBirth && { dateOfBirth: body.dateOfBirth }),
+                ...(body.isAdmin && { isAdmin: body.isAdmin=="on"?1:0 }),
+            } }
+        );
+        
+
+        // console.log("updated")
+        return NextResponse.json({ message: 'Profile updated successfully' }, { status: 200 });
+
+
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to Update Profile' }, { status: 500 });
+    }
 }

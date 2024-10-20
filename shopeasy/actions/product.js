@@ -1,7 +1,7 @@
 
 export async function fetchproducts() {
     // const res = await fetch('http://localhost:3000/api/products');    
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`);    
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`);
     const data = await res.json();
     return data;
 }
@@ -12,10 +12,9 @@ export async function fetchproduct(id) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product?id=${id}`);
     const data = await res.json();
     return data;
-
 }
 
-export async function fetchFilteredproducts(minprice,maxprice) {
+export async function fetchFilteredproducts(minprice, maxprice) {
     // console.log( " Fetch Product fuction called ",minprice,maxprice );
     // const res = await fetch(`http://localhost:3000/api/products?minprice=${minprice}&maxprice=${maxprice}`);
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products?minprice=${minprice}&maxprice=${maxprice}`);
@@ -24,7 +23,7 @@ export async function fetchFilteredproducts(minprice,maxprice) {
 }
 
 export async function insertProduct(newProduct) {
-    
+
     try {
         // console.log(newProduct);
 
@@ -48,4 +47,3 @@ export async function insertProduct(newProduct) {
         return { error: 'Failed to insert product' };
     }
 }
-

@@ -6,6 +6,7 @@ import { ObjectId } from 'mongodb';
 export async function GET(req) {
     try {
         const searchParams = new URL(req.url).searchParams;
+        
         console.log(searchParams.get('id'));
         
         const id = searchParams.get('id');

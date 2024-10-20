@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { insertProduct } from '@/actions/product';
 import { toast } from 'sonner';
+import { useSession } from 'next-auth/react';
 
 const ProductForm = () => {
+    const { data: session } = useSession(); 
+    
     const [formData, setFormData] = useState({
+        adminId: session?.user.id,
         img: '',
         category: '',
         name: '',
@@ -15,116 +19,116 @@ const ProductForm = () => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: e.target.type === 'number' ? parseFloat(value): value, // Convert to number if it's a number input
+            [name]: e.target.type === 'number' ? parseFloat(value) : value, // Convert to number if it's a number input
         });
-
     };
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
+            console.log(formData);
             const insert = await insertProduct(formData);
             
             console.log(insert);
 
             toast("Product is Inserted to Database", {
                 description: formData.name,
-                // action: {
-                //     label: "Remove",
-                //     onClick: () => {
-                //         deleteItem({ item: item });
-                //         toast("Item is Removed")
-                //     },
-                // },
-            })
+            });
 
             setFormData({
+                adminId: session?.user?.id,
                 img: '',
                 category: '',
                 name: '',
                 company: '',
                 price: 0 ,
-            })
-
+            });
 
         } catch (error) {
             console.log(error);
         }
-
     };
 
     return (
-        <div className='w-[30vw] m-auto ' >
-            <h1 className='bg-green-500 h-14 p-2  mb-5 text-white text-3xl' >Insert New Product</h1>
-            <form onSubmit={handleSubmit}>
-                <div className='flex' >
-                    <label > <div className= 'w-[150px] mb-2 rounded text-green-500 text-xl bg-bg-white border p-2 '>Image URL</div> </label>
-                    <input className= 'p-2 w-full mb-2 border border-black rounded-md'
-                        type="text"
-                        name="img"
-                        placeholder='Enter Link To Image'
-                        value={formData.img}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+        session?.user.isAdmin ? (
+            <div className='w-[40vw] m-auto mt-10 p-8 bg-white shadow-xl rounded-lg'>
+                <h1 className='bg-gradient-to-r from-green-500 to-teal-500 text-white text-4xl font-semibold py-3 px-5 rounded-lg mb-8'>Insert New Product</h1>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Image URL */}
+                    <div className='flex flex-col'>
+                        <label className="text-lg font-semibold text-green-600">Image URL</label>
+                        <input className='p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 transition-colors'
+                            type="text"
+                            name="img"
+                            placeholder='Enter Image URL'
+                            value={formData.img}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <div className='flex' >
-                    <label><div className= 'w-[150px] mb-2 rounded text-green-500 text-xl bg-white border p-2 '>Category</div></label>
-                    <input className='p-2 w-full mb-2 border border-black rounded-md'
-                        type="text"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        placeholder='Category'
-                        required
-                    />
-                </div>
+                    {/* Category */}
+                    <div className='flex flex-col'>
+                        <label className="text-lg font-semibold text-green-600">Category</label>
+                        <input className='p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 transition-colors'
+                            type="text"
+                            name="category"
+                            placeholder='Product Category'
+                            value={formData.category}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <div className='flex' >
-                    <label><div className= 'w-[150px] mb-2 rounded text-green-500 text-xl bg-white border p-2 '>Product Name</div></label>
+                    {/* Product Name */}
+                    <div className='flex flex-col'>
+                        <label className="text-lg font-semibold text-green-600">Product Name</label>
+                        <input className='p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 transition-colors'
+                            type="text"
+                            name="name"
+                            placeholder='Product Name'
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                    <input className= 'p-2 w-full mb-2 border border-black rounded-md'
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        placeholder='Name'
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+                    {/* Company */}
+                    <div className='flex flex-col'>
+                        <label className="text-lg font-semibold text-green-600">Company</label>
+                        <input className='p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 transition-colors'
+                            type="text"
+                            name="company"
+                            placeholder='Company Name'
+                            value={formData.company}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <div className='flex' >
-                    <label><div className= 'w-[150px] mb-2 rounded text-green-500 text-xl bg-white border p-2 '>Company</div></label>
+                    {/* Price */}
+                    <div className='flex flex-col'>
+                        <label className="text-lg font-semibold text-green-600">Price (in Rs)</label>
+                        <input className='p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 transition-colors'
+                            type="number"
+                            name="price"
+                            placeholder='Price in Rs'
+                            value={formData.price}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                    <input className= 'p-2 w-full mb-2 border border-black rounded-md'
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        placeholder='Company'
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className='flex' >
-                    <label><div className= 'w-[150px] mb-2 rounded text-green-500 text-xl bg-white border p-2 '>Price (in Rs)</div></label>
-
-                    <input className= 'p-2 w-full mb-2 border border-black rounded-md'
-                        type="number"
-                        name="price"
-                        placeholder='Price in Rs'
-                        value={formData.price}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <button className='hover:bg-green-500 active:bg-green-700 bg-green-600 p-2 text-2xl mt-2 p-2 w-full mb-2 text-white' type="submit">Submit</button>
-            </form>
-        </div>
+                    <button className='w-full py-3 text-xl bg-gradient-to-r from-green-500 to-teal-500 text-white font-semibold rounded-lg hover:bg-gradient-to-r hover:from-teal-500 hover:to-green-500 transition-colors shadow-lg mt-4'>Submit</button>
+                </form>
+            </div>
+        ) : (
+            <div className="w-[40vw] m-auto mt-10 text-center bg-white p-6 rounded-lg shadow-lg">
+                <h2 className="text-3xl font-semibold text-red-600 mb-4">You cannot add products.</h2>
+                <p className="text-lg text-gray-700 mb-2">Sign in as an admin to add products.</p>
+                <p className="text-lg text-gray-700">Update your profile as admin to gain access.</p>
+            </div>
+        )
     );
 };
 
