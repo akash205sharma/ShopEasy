@@ -51,7 +51,7 @@ const Myaccount = () => {
                     </div>
                   </NavigationMenuLink>
                 </Link>
-                <Link href={"/user/orders"} legacyBehavior passHref>
+                <Link href={"/user/profile"} legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     <div className='w-[125px]'>
                       Your Account
