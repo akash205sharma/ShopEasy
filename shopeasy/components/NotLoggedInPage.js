@@ -12,7 +12,7 @@ const NotLoggedInPage = () => {
                     Log In
                 </button>
             </Link>
-            <p className="text-sm text-gray-500 mt-4">Don't have an account? <Link href="/register" className="text-green-600 hover:underline">Register here</Link>.</p>
+            <p className="text-sm text-gray-500 mt-4">Don`&lsquo;`t have an account? <Link href="/register" className="text-green-600 hover:underline">Register here</Link>.</p>
         </div>
     );
 };
