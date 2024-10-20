@@ -65,22 +65,22 @@ const Myaccount = () => {
                     </div>
                   </NavigationMenuLink>
                 </Link>
-                </>
+              </>
               )}
 
               {session ? (
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <div onClick={() => { signOut() }} >Sign Out</div>
+                  <div onClick={() => { signOut() }} className='w-[125px]' >Sign Out</div>
                 </NavigationMenuLink>
               ) : (<>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <Link className='w-[125px]' href={"/login"} >Login</Link>
                 </NavigationMenuLink>
-                <Link className='bg-red-500 w-[125px]' href={"/signup"} >
+                <Link href={"/signup"} legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <h1 className=' w-[125px]' >
+                    <div className='w-[125px]'>
                       Sign Up
-                    </h1>
+                    </div>
                   </NavigationMenuLink>
                 </Link>
               </>

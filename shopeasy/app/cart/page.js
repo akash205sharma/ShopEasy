@@ -6,6 +6,7 @@ import CartContext from "@/context/CartContext";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { placeOrder } from "@/actions/orders";
+import Link from "next/link";
 
 const Page = () => {
   const { data: session } = useSession();
@@ -28,8 +29,17 @@ const Page = () => {
   const handleCheckout = async (e) => {
     e.preventDefault();
     try {
+      if (cart?.cartItems?.length == 0) {
+
+        toast("Cart is Empty. Add Items First !");
+
+        return;
+      }
+
       await placeOrder({ cart: cart, user: session?.user });
+
       toast("Order Placed Successfully");
+
     } catch (error) {
       toast.error("Order could not be placed.");
     }
@@ -64,7 +74,7 @@ const Page = () => {
                       <div className="bg-star-b bg-contain w-[73px] h-[15px]">
                         <div style={{ width: `${star}%` }} className="bg-star-y bg-contain h-[15px]" />
                       </div>
-                      <span>({ star / 20})</span>
+                      <span>({star / 20})</span>
                     </div>
                   </div>
                 </td>
@@ -110,12 +120,19 @@ const Page = () => {
             <span className="text-green-600">Rs. {SubTotal + DeliveryCharges}</span>
           </div>
         </div>
+        {!session?(<Link href={"/login"}> <div
+          className="w-full mt-6 py-3 text-center bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-lg transition-all duration-300"
+        >
+          Proceed to Checkout
+          </div>
+        </Link>):(
         <button
           onClick={(e) => handleCheckout(e)}
           className="w-full mt-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-lg transition-all duration-300"
         >
           Proceed to Checkout
         </button>
+        )}
       </div>
     </div>
   );
