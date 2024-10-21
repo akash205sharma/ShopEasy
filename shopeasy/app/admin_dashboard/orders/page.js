@@ -20,6 +20,8 @@ const Page = () => {
     fetchOrders()
   }, [id])
 
+  console.log(adminOrders);
+
 
   return (
     <div className="w-[80vw] mx-auto p-8 bg-gray-50 shadow-lg rounded-lg mt-6">
@@ -27,8 +29,7 @@ const Page = () => {
         Admin Orders Overview
       </div>
 
-      <div className="grid grid-cols-[2fr_2fr_repeat(1,_3fr)_1fr_1fr_1fr] gap-4 bg-gradient-to-r from-green-600 to-purple-400 text-white text-xl font-semibold p-4 rounded-t-lg">
-        <div>Customer</div>
+      <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] gap-4 bg-gradient-to-r from-green-600 to-purple-400 text-white text-xl font-semibold p-4 rounded-t-lg">
         <div>Address</div>
         <div>Image</div>
         <div>Product</div>
@@ -51,9 +52,9 @@ const Page = () => {
             </div>
 
             {order.items.map((item) => (
-              <div key={item._id} className="grid grid-cols-[2fr_2fr_repeat(1,_3fr)_1fr_1fr_1fr] gap-6 items-center mb-4">
-                <div className="text-gray-700">{order.address}</div>
-                <div className="w-[80px]">
+              <div key={item._id} className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] gap-6 items-center mb-4">
+                <div className="text-gray-700">{order.address}</div>  
+                <div className="w-[100px]">
                   <img className="rounded-lg" src={item.img} alt={item.name} />
                 </div>
                 <div className="text-gray-800 font-medium">{item.name}</div>

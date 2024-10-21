@@ -5,7 +5,7 @@ const NotFoundPage = () => {
     <div className="flex items-center justify-center h-[80vh] bg-gray-100">
       <div className="text-center p-8 bg-white shadow-md rounded-lg">
         <h1 className="text-6xl font-bold text-green-600">404</h1>
-        <p className="text-gray-600 text-xl mt-4">Oops! The page you're looking for doesn't exist.</p>
+        <p className="text-gray-600 text-xl mt-4">Oops! The page you&apos;re looking for doesn&apos;t exist.</p>
         
         <img 
           src="/error-404.png" 

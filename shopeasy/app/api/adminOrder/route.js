@@ -18,7 +18,7 @@ export async function GET(req) {
 			return NextResponse.json({ error: 'User Not Found' }, { status: 404 });
 		}
 
-		const orders = user.adminOrderHistory;
+		const orders = user.adminOrderHistory;   
 
 		return NextResponse.json(orders);
 

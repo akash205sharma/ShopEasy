@@ -37,7 +37,7 @@ const adminOrderSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
-  address:{type:String},
+  address:{type:String},    
   totalAmount: { type: Number, required: true },
   orderDate: { type: Date, default: Date.now },
 });
@@ -56,7 +56,7 @@ const UserSchema = new Schema({
   address: { type: String }, 
   orderHistory: [orderSchema],
   adminOrderHistory: [adminOrderSchema], 
-  dateOfBirth: { type: Date }, 
+  dateOfBirth: { type: Date },
   phone: { type: String }, 
 
 

@@ -55,7 +55,7 @@ export async function history(id) {
 export async function fetchAdminOrders(id) {
     try {
         
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/order?id=${id}`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/adminOrder?id=${id}`)
         const orders = await res.json();
 
         
