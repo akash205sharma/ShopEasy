@@ -22,7 +22,9 @@ export async function PATCH(req) {
 				if (!adminOrders[adminId]) {
 					adminOrders[adminId] = {
 						userId: user.id,  // Assuming you have the user's ID
+						name: user.name,
 						items: [],
+						address : user.address,
 						totalAmount: 0,  // Initialize total amount
 						orderDate: new Date()  // Set current date
 					};
@@ -54,7 +56,7 @@ export async function PATCH(req) {
 
 
 
-			//for users update
+			//For updating users order history
 
 			const Totalprice = cart.cartItems.reduce((total, cartItem) => {
 				return total + (cartItem.item.price * cartItem.quantity);

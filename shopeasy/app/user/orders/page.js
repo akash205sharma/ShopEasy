@@ -31,7 +31,7 @@ const Page = () => {
 
     {orders.length==0 ?(<NoOrderHistory/>):(
 
-      orders.map((order) => (
+      orders.reverse().map((order) => (
         <div key={order.id} className="border bg-white p-5 m-3 shadow-sm rounded-lg hover:shadow-md transition-shadow duration-300">
           {order.items.map((item) => (
             <div key={item.id} className="grid grid-cols-[2fr_repeat(1,_3fr)_1fr_1fr_1fr]  gap-4 justify-around items-center mb-4">

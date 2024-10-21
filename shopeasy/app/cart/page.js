@@ -7,6 +7,9 @@ import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { placeOrder } from "@/actions/orders";
 import Link from "next/link";
+import { OrderDialog } from "@/components/OrderDialog";
+
+
 
 const Page = () => {
   const { data: session } = useSession();
@@ -126,14 +129,14 @@ const Page = () => {
           Proceed to Checkout
           </div>
         </Link>):(
-        <button
-          onClick={(e) => handleCheckout(e)}
-          className="w-full mt-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-lg transition-all duration-300"
-        >
-          Proceed to Checkout
-        </button>
+        <OrderDialog handleCheckout={handleCheckout} />
         )}
       </div>
+
+        
+
+
+
     </div>
   );
 };

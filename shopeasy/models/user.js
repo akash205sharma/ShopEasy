@@ -27,6 +27,7 @@ const orderSchema = new Schema({
 
 const adminOrderSchema = new Schema({
   userId:{ type: String, required: true },
+  name:{type:String},
   items: [
     {
       productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
@@ -36,6 +37,7 @@ const adminOrderSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
+  address:{type:String},
   totalAmount: { type: Number, required: true },
   orderDate: { type: Date, default: Date.now },
 });
@@ -52,7 +54,7 @@ const UserSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
   isAdmin: { type: Boolean, default: false },
   address: { type: String }, 
-  orderHistory: [orderSchema], 
+  orderHistory: [orderSchema],
   adminOrderHistory: [adminOrderSchema], 
   dateOfBirth: { type: Date }, 
   phone: { type: String }, 

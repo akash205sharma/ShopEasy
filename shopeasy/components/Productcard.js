@@ -98,7 +98,7 @@ const ProductCard = ({ item }) => {
   };
 
   return (
-    <Link href={item._id}>
+    <Link href={`product/${item._id}`}>
       <div className="group bg-white relative hover:shadow-xl duration-300 pb-[26rem] m-4 p-5 pt-0 w-[250px] h-[400px] border rounded-lg hover:transform hover:scale-105 ease-in-out transform transition-transform">
         {/* Heart Icon on hover */}
         <div className="absolute left-[200px] top-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">

@@ -4,7 +4,7 @@ import React from 'react'
 import ProductForm from '@/components/Productform'
 const page = () => {
   return (
-    <div>
+    <div className=" w-[80vw] ">
       <ProductForm/>
     </div>
   )

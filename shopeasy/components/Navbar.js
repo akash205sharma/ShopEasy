@@ -12,7 +12,7 @@ import CartContext from '@/context/CartContext'
 
 
 function Navbar() {
-  const { data, session } = useSession();
+  const { data: session } = useSession();
   
   const {cart} =useContext(CartContext)
 
@@ -35,11 +35,12 @@ function Navbar() {
               {/* <Badge v={3} /> */}
             </div>
           </Link>
-          <Link href="/admin" >
+          {session?.user.isAdmin &&
+          <Link href="/admin_dashboard/orders" >
           <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
             <img src="" alt="" /> Admin
           </div>
-          </Link>
+          </Link>}
           <Link href="/cart" >
             <div className='flex w-[110px] h-[30px] align-bottom items-end relative' >
               <img src="cart.svg" alt="" /> Cart <Badge v={cart?.cartItems?.length || 0} />

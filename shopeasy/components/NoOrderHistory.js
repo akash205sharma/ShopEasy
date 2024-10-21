@@ -5,12 +5,7 @@ import Link from "next/link";
 
 const NoOrderHistory = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-[80vh] p-10 bg-gray-50 rounded-lg shadow-lg">
-      <img
-        src="/empty-orders.svg" // You can add an appropriate image or icon here
-        alt="No Orders"
-        className="w-[200px] h-[200px] mb-6"
-      />
+    <div className="flex flex-col items-center justify-center h-[71vh] p-10 bg-gray-50 rounded-lg shadow-lg">
       <h2 className="text-3xl font-semibold text-gray-800 mb-4">
         No Orders Found
       </h2>

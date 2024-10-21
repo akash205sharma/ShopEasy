@@ -28,22 +28,22 @@ const Showroom = () => {
       setProducts(filteredProducts); // Update the state with the fetched products
       // console.log("Data changed");
       // console.log(filteredProducts);
-      
+
     };
 
     fetchProducts();
-  }, [minprice,maxprice]);
+  }, [minprice, maxprice]);
 
 
 
   // useEffect(() => {
   //   if(products.length==0) return
   //   const filteredProducts = products.filter({minprice:products.minprice})
-    
+
   //   setProducts(filteredProducts);
-  
+
   // }, [minprice,maxprice])
-  
+
 
 
 
@@ -84,10 +84,11 @@ const Showroom = () => {
 
       {/*  produtbar  */}
       <div className='grid grid-cols-4 ml-[30px] w-[100%] overflow-scroll no-scrollbar '>
-
-        {products.map((item) => (
-          <Productcard key={item._id} item={item} />
-        ))}
+        {
+          products.map((item) => (
+            <Productcard key={item._id} item={item} />
+          ))
+        }
 
 
       </div>
