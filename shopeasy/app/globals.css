@@ -89,3 +89,15 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.5em;
+  } 
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9em;
+  }
+}
