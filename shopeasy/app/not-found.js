@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image';
+
+
 
 const NotFoundPage = () => {
   return (
@@ -7,11 +10,12 @@ const NotFoundPage = () => {
         <h1 className="text-6xl font-bold text-green-600">404</h1>
         <p className="text-gray-600 text-xl mt-4">Oops! The page you&apos;re looking for doesn&apos;t exist.</p>
         
-        <img 
-          src="/error-404.png" 
-          alt="Page not found" 
-          className="w-[200px] mx-auto my-8"
-        />
+        <Image src="/error-404.png" alt="Description of image" width={500} height={300} />
+        <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+  <Image src="/error-404.png" alt="Description of image" layout="fill" objectFit="cover" />
+</div>
+
+
         
         <p className="text-gray-500 mb-6">
           The page might have been removed, had its name changed, or is temporarily unavailable.

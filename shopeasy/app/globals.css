@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -86,5 +88,41 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Typography */
+h1, h2, h3, p {
+  margin: 0.5rem 0;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive container */
+.container {
+  padding: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
   }
 }
